@@ -34,9 +34,14 @@ export default {
         }
     }
   },
-  created(){
+  mounted(){
         this._getTime()
         setTimeout(this._getTime,60000)
+        setTimeout(()=>{
+                this.$router.push({
+                path:'/college'
+            })
+        },3000)
   },
   methods:{
     _getTime(){
@@ -59,7 +64,6 @@ export default {
             string='0'+string
             strlen++
         }
-
         return string
     }
   }
@@ -76,6 +80,7 @@ export default {
         font-family:'微软雅黑'
         background:url('assets/bg.png')
         color:#fff
+        overflow:hidden
         .header
             height:10%
             width:100%

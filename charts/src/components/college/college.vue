@@ -13,6 +13,8 @@
 </template>
 <script>
     import Collegetemp from '../collegetemp/collegetemp.vue'
+    import * as API from '@/api/api'
+
     export default {
         data(){
             return{
@@ -43,9 +45,19 @@
                 }]
             }
         },
+        created(){
+            this._getCollegeData()
+        },
         methods:{
-            _getCollege(){
-                
+            //TODO
+            _getCollegeData(){
+                 API.getCollegeData().then((res)=>{
+                                     if(res.status===200){
+                                            console.log(res)
+                                        }
+                                  }).catch(function (error) {
+                                    console.log(error);
+                                  })
             }
         },
         components:{

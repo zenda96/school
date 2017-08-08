@@ -9,6 +9,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/',
+      redirect: '/total'
+    },
+    {
       path: '/total',
       name: 'total',
       component: Total

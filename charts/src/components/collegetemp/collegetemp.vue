@@ -68,7 +68,7 @@
                         font-size:35px
                 .left
                     float:left
-                    color:#56a7f7
+                    color:#32ADFF
                 .right
                     float:right
                     color:#00cc66

@@ -40,6 +40,8 @@
     </transition>
 </template>
 <script>
+    import * as API from '@/api/api'
+
     export default {
         data(){
             return{
@@ -57,14 +59,24 @@
                 return this.checkedInRatio * 100 +'%'
             }
         },
+        created(){
+            this._getTotalData()
+        },
         mounted(){
-            setTimeout(this.pushCollege,10000)
-            setTimeout(this.pushMap,20000)
-            setTimeout(this.pushTotal,30000)
+            // setTimeout(this.pushCollege,10000)
+            // setTimeout(this.pushMap,20000)
+            // setTimeout(this.pushTotal,30000)
         },
         methods:{
-                _getcheckedIn(){
-                    
+                //TODO
+                _getTotalData(){
+                    API.getTotalData().then((res)=>{
+                                     if(res.status===200){
+                                            console.log(res)
+                                      }
+                                  }).catch(function (error) {
+                                    console.log(error);
+                                  })
                 },
                 pushCollege(){
                     this.$router.push({
@@ -108,7 +120,7 @@
         justify-content:center
         .left
             width:35%
-            min-width:262px
+            min-width:300px
             height:40%
             background:rgba(255,255,255,0.2)
             margin-right:20px
@@ -120,11 +132,16 @@
                 flex-direction: column
                 justify-content:center
                 .num
-                    font-size:38px
+                    font-size:80px
                     padding:0 5px
-                    &::before,&::after
-                        content:'——'
-                        opacity:0.2                      
+                    &::before,&::after                        
+                        opacity:0.2 
+                        font-size:30px  
+                        vertical-align:middle   
+                    &::after
+                       content:' ———'   
+                    &::before
+                       content:'——— '               
             .scale
                 height:60%
                 .boy,.girl
@@ -139,14 +156,14 @@
                         font-size:60px
                         padding-top:5px
                     .peopleNum
-                        font-size:20px
+                        font-size:36px
                         padding-top:20px
                 .boy
                     .icon
-                        color:#116de2
+                        color:#32ADFF
                 .girl
                     .icon
-                        color:#e67488
+                        color:#FF746A
         .right
             width:25%
             min-width:190px
@@ -188,5 +205,5 @@
                         color:#00cc66
                         transform:translate(-50%,-50%)
         .intro
-            font-size:14px
+            font-size:20px
 </style>

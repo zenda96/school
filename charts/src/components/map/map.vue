@@ -12,19 +12,34 @@
 import echarts from 'echarts/lib/echarts'
 import 'echarts/lib/chart/map'
 import 'echarts/map/js/china.js'
-
+import * as API from '@/api/api'
 
 export default {
     data(){
         return {
-           
+           totalNum:1001,
+           locations:[{
+                    name: '上海',
+                    coord: [121.472644, 31.231706],
+                    value:56,
+                }, {
+                    name: '北京',
+                    coord: [116.405285, 39.904989],
+                    value:62,
+                }, {
+                    name: '广东',
+                    coord: [113.280637, 23.839463714285714],
+                    value:85,
+                }]
         }
+    },
+    created(){
+        this._getMapData()
     },
     mounted() {
        let myChart = echarts.init(document.getElementById('map'));
        this.initCharts(myChart)
        this._setInterval(myChart)
-
     },
     methods:{
         initCharts(myChart){                            
@@ -32,22 +47,22 @@ export default {
                 tooltip: {
                     trigger: 'item',
                     padding:0,
-                    formatter: function (params, ticket, callback) {
+                    formatter: (params, ticket, callback)=>{
                             // $.get('detail?name=' + params.name, function (content) {
                             //     callback(ticket, toHTML(content));
                             // });
                             // console.log(params)
                             // console.log(params)
-                            let temp = `<div class="tooltipBox" style="width:110px;height:120px;">
+                            let temp = `<div class="tooltipBox" style="width:120px;height:140px;">
                                             <h3 style="text-align:center;height:25%;margin:0;vertical-align:middle;padding-top:5px">${params.name}</h3>
                                             <div class="tooltipContent" style="width:100%;height:75%;display:flex;align-items:center;">
                                                 <div class="left" style="float:left; width:50%;height:100%;display:flex;align-items:center;flex-direction:column;justify-content:center;">
-                                                    <span class="icon-users" style="font-size:30px;color:#116de2;"></span>
-                                                    <span class="tooltipIntro" style="margin-top:10px">${params.data.value}</span>
+                                                    <span class="icon-users" style="font-size:30px;color:#32ADFF;"></span>
+                                                    <span class="tooltipIntro" style="margin-top:10px;color:#32ADFF;font-size:24px;">${params.data.value}</span>
                                                 </div>
                                                 <div class="right" style="float:right; width:50%;height:100%;display:flex;align-items:center;flex-direction:column;justify-content:center;">
                                                     <span class="icon-pie-chart" style="font-size:30px;color:#00cc66"></span>
-                                                    <span class="tooltipIntro" style="margin-top:10px">${params.data.value}</span>
+                                                    <span class="tooltipIntro" style="margin-top:10px;color:#00CC66;font-size:24px;">${((params.data.value / this.totalNum)*100).toFixed(1)}%</span>
                                                 </div>
                                             </div>
                                         </div>`
@@ -84,45 +99,42 @@ export default {
                 }]
              });
         },
+        //TODO 
+        _getMapData(){
+            API.getMapData().then((res)=>{
+                if(res.status===200){
+                    console.log(res)
+                }
+            }).catch(function (error) {
+                console.log(error);
+              })
+        },
         _setInterval(myChart){
-            var locations = [{
-                    name: '上海',
-                    coord: [121.472644, 31.231706],
-                    value:56,
-                }, {
-                    name: '北京',
-                    coord: [116.405285, 39.904989],
-                    value:62,
-                }, {
-                    name: '广东',
-                    coord: [113.280637, 23.839463714285714],
-                    value:85,
-                }];
+            var locations = this.locations
             var currentLoc = 0;
-        setInterval(function() {
-                myChart.setOption({
-                    series: [{
-                        center: locations[currentLoc].coord,
-                        zoom: 4,
-                        data: [{
-                            name: locations[currentLoc].name,
-                            selected: true,
-                            value:locations[currentLoc].value
-                        }],
-                        animationDurationUpdate: 1000,
-                        animationEasingUpdate: 'cubicInOut'
-                    }]
-                });
-                myChart.dispatchAction({
-                    type: 'showTip',
-                    seriesIndex: 0,
-                    // dataIndex: 0
-                    name:locations[currentLoc].name
-                });
-                // console.log(locations[currentLoc].name)
-                currentLoc = (currentLoc + 1) % locations.length;
-                
-            }, 2000);
+            setInterval(function() {
+                    myChart.dispatchAction({
+                        type: 'showTip',
+                        seriesIndex: 0,
+                        // dataIndex: 0
+                        name:locations[currentLoc].name
+                    });
+
+                    myChart.setOption({
+                        series: [{
+                            center: locations[currentLoc].coord,
+                            zoom: 4,
+                            data: [{
+                                name: locations[currentLoc].name,
+                                selected: true,
+                                value:locations[currentLoc].value
+                            }],
+                            animationDurationUpdate: 1000,
+                            animationEasingUpdate: 'cubicInOut'
+                        }]
+                    });
+                    currentLoc = (currentLoc + 1) % locations.length;       
+                }, 2000);
         }
     },
 }

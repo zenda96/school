@@ -43,6 +43,11 @@
                 }]
             }
         },
+        methods:{
+            _getCollege(){
+                
+            }
+        },
         components:{
             Collegetemp
         }
@@ -52,7 +57,7 @@
     .collegeanimate-enter-active
         transition:all 1s ease
     .collegeanimate-leave-active
-        transition:all 1s ease
+        transition:all 0.5s ease
     .collegeanimate-enter, .collegeanimate-leave-to
         transform:translate3d(0,100px,0)
         opacity:0

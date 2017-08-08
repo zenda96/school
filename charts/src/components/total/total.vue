@@ -1,52 +1,102 @@
 <template>
-    <div class="total">
-        <div class="left">
-            <div class="totalCheckIn">
-                <span class="num">2173</span>
-                <span class="intro">已报到人数</span>              
+    <transition name="fade-in">
+        <div class="total">
+            <div class="left">
+                <div class="totalCheckIn">
+                    <span class="num">{{checkedInNum}}</span>
+                    <span class="intro">已报到人数</span>              
+                </div>
+                <div class="scale"> 
+                    <div class="boy">
+                        <span class="intro">男生</span>
+                        <span class="icon-man icon"></span>
+                        <span class="peopleNum">{{checkedInBoy}}</span>
+                    </div>  
+                    <div class="girl">
+                        <span class="intro">女生</span>
+                        <span class="icon-woman icon"></span>
+                        <span class="peopleNum">{{checkedInGirl}}</span>
+                    </div>           
+                </div>
             </div>
-            <div class="scale"> 
-                <div class="boy">
-                    <span class="intro">男生</span>
-                    <span class="icon-man icon"></span>
-                    <span class="peopleNum">706</span>
-                </div>  
-                <div class="girl">
-                    <span class="intro">女生</span>
-                    <span class="icon-woman icon"></span>
-                    <span class="peopleNum">1019</span>
-                </div>           
-            </div>
-        </div>
-        <div class="right">
-            <div class="text">
-                <span class="intro">报到完成率</span>
-            </div>
-            <div class="circle">
-                    <div class="progress-circle">
-                        <svg width=200 height=200 viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                          <circle class="progress-background" r="50" cx="50" cy="50" fill="transparent"/>
-                          <circle class="progress-bar" r="50" cx="50" cy="50" fill="transparent" stroke-dasharray="314"
-                                  stroke-dashoffset="30"/>
-                        </svg>
-                        <div class="circleNum">
-                            90%
+            <div class="right">
+                <div class="text">
+                    <span class="intro">报到完成率</span>
+                </div>
+                <div class="circle">
+                        <div class="progress-circle">
+                            <svg width=200 height=200 viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                              <circle class="progress-background" r="50" cx="50" cy="50" fill="transparent"/>
+                              <circle class="progress-bar" r="50" cx="50" cy="50" fill="transparent" stroke-dasharray="314"
+                                      :stroke-dashoffset="dashoffset"/>
+                            </svg>
+                            <div class="circleNum">
+                                {{checkedInPercent}}
+                            </div>
                         </div>
-                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </transition>
 </template>
 <script>
     export default {
         data(){
             return{
-
+                checkedInNum:0,
+                checkedInBoy:0,
+                checkedInGirl:0,
+                checkedInRatio:0.3,
             }
+        },
+        computed:{
+            dashoffset(){
+                return (1-this.checkedInRatio) * 314
+            },
+            checkedInPercent(){
+                return this.checkedInRatio * 100 +'%'
+            }
+        },
+        mounted(){
+            setTimeout(this.pushCollege,10000)
+            setTimeout(this.pushMap,20000)
+            setTimeout(this.pushTotal,30000)
+        },
+        methods:{
+                _getcheckedIn(){
+                    
+                },
+                pushCollege(){
+                    this.$router.push({
+                            path:'/college'
+                        })
+                },
+                pushMap(){
+                    this.$router.push({
+                            path:'/map'
+                        })
+                },
+                pushTotal(){
+                    this.$router.push({
+                            path:'/total'
+                        })
+                },
         }
     }
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scpoed>
+    .fade-in-enter-active,.fade-in-leave-active
+        transition:all 0.5s
+        .left,.right
+            transition:all 0.5s    
+    .fade-in-enter,.fade-in-leave-to
+        opacity:0
+        .left
+            opacity:0
+            transform:translate3d(200px,100px,0)
+        .right
+            opacity:0
+            transform:translate3d(-200px,100px,0)
     .total
         position:absolute
         width:100% 
@@ -58,6 +108,7 @@
         justify-content:center
         .left
             width:35%
+            min-width:262px
             height:40%
             background:rgba(255,255,255,0.2)
             margin-right:20px
@@ -98,6 +149,7 @@
                         color:#e67488
         .right
             width:25%
+            min-width:190px
             height:40%
             background:rgba(255,255,255,0.2)
             display:flex

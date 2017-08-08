@@ -1,8 +1,11 @@
 <template>
-    <div class="map">
-        <div id="map">
+    <transition name="scale-in">
+        <div class="map">
+            <div id="map">
+            </div>          
+            <div id="mask"></div>
         </div>
-    </div>
+    </transition>
 </template>
 
 <script>
@@ -39,11 +42,11 @@ export default {
                                             <h3 style="text-align:center;height:25%;margin:0;vertical-align:middle;padding-top:5px">${params.name}</h3>
                                             <div class="tooltipContent" style="width:100%;height:75%;display:flex;align-items:center;">
                                                 <div class="left" style="float:left; width:50%;height:100%;display:flex;align-items:center;flex-direction:column;justify-content:center;">
-                                                    <span class="icon-users"></span>
+                                                    <span class="icon-users" style="font-size:30px;color:#116de2;"></span>
                                                     <span class="tooltipIntro" style="margin-top:10px">${params.data.value}</span>
                                                 </div>
                                                 <div class="right" style="float:right; width:50%;height:100%;display:flex;align-items:center;flex-direction:column;justify-content:center;">
-                                                    <span class="icon-pie-chart"></span>
+                                                    <span class="icon-pie-chart" style="font-size:30px;color:#00cc66"></span>
                                                     <span class="tooltipIntro" style="margin-top:10px">${params.data.value}</span>
                                                 </div>
                                             </div>
@@ -99,8 +102,8 @@ export default {
         setInterval(function() {
                 myChart.setOption({
                     series: [{
-                        // center: locations[currentLoc].coord,
-                        // zoom: 4,
+                        center: locations[currentLoc].coord,
+                        zoom: 4,
                         data: [{
                             name: locations[currentLoc].name,
                             selected: true,
@@ -125,6 +128,18 @@ export default {
 }
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+    .scale-in-enter-active,.scale-in-leave-active
+        transition:all 0.5s ease
+        #mask
+            transition:all 1s ease
+    .scale-in-enter
+        opacity:0
+        #mask
+            transform:scale(0)
+    .scale-in-leave-to
+        opacity:0
+        #mask
+            transform:scale(0)
     .map 
         position:absolute
         width:100% 
@@ -138,4 +153,12 @@ export default {
             height:50% 
             width:50%
             border:1px dashed #fff
+            display:relative
+            z-index:10
+        #mask
+            height:50% 
+            width:50%
+            background:rgba(255,255,255,0.2)
+            position:absolute
+            z-index:2
 </style>

@@ -37,13 +37,23 @@ export default {
   mounted(){
         this._getTime()
         setTimeout(this._getTime,60000)
-        setTimeout(()=>{
-                this.$router.push({
-                path:'/college'
-            })
-        },3000)
   },
   methods:{
+    pushCollege(){
+        this.$router.push({
+                path:'/college'
+            })
+    },
+    pushMap(){
+        this.$router.push({
+                path:'/map'
+            })
+    },
+    pushTotal(){
+        this.$router.push({
+                path:'/total'
+            })
+    },
     _getTime(){
         let weeks = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"]; 
         let T = new Date();

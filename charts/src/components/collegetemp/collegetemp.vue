@@ -41,6 +41,7 @@
             background:rgba(255,255,255,0.1)
             border-radius:6px
             border:1px solid rgba(255,255,255,0.5)
+            box-shadow: 0 4px 16px 0 rgba(24,36,103,0.60)
             margin:20px
             .title
                 height:25%

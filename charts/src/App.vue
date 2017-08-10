@@ -99,7 +99,7 @@ export default {
             justify-content:space-between
             color:#fff
             .left
-                // float:left
+                padding-left:32px
             .center
                 min-width:260px
                 height:100%

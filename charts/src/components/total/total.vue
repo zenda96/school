@@ -3,7 +3,7 @@
         <div class="total">
             <div class="left">
                 <div class="totalCheckIn">
-                    <span class="num">{{checkedInNum}}</span>
+                    <span class="num"><span style="padding:0 24px">{{checkedInNum}}</span></span>
                     <span class="intro">已报到人数</span>              
                 </div>
                 <div class="scale"> 
@@ -118,11 +118,15 @@
         display:flex 
         align-items:center 
         justify-content:center
+        .left,.right
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.60);
+            box-shadow: 0 4px 16px 0 rgba(24,36,103,0.60);
+            border-radius: 10px;
         .left
             width:35%
             min-width:300px
             height:40%
-            background:rgba(255,255,255,0.2)
             margin-right:20px
             border-radius:6px
             .totalCheckIn
@@ -138,10 +142,7 @@
                         opacity:0.2 
                         font-size:30px  
                         vertical-align:middle   
-                    &::after
-                       content:' ———'   
-                    &::before
-                       content:'——— '               
+                        content:'——'            
             .scale
                 height:60%
                 .boy,.girl
@@ -168,7 +169,6 @@
             width:25%
             min-width:190px
             height:40%
-            background:rgba(255,255,255,0.2)
             display:flex
             flex-direction: column
             border-radius:6px

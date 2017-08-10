@@ -122,8 +122,8 @@ export default {
 
                     myChart.setOption({
                         series: [{
-                            center: locations[currentLoc].coord,
-                            zoom: 4,
+                            // center: locations[currentLoc].coord,
+                            // zoom: 4,
                             data: [{
                                 name: locations[currentLoc].name,
                                 selected: true,

@@ -1,15 +1,18 @@
 <template>
-    <transition name="collegeanimate"> 
         <div class="college">  
             <div class="wrapper">
-                <ul>
-                    <li v-for="item in items">
-                        <collegetemp :num="item.num" :title="item.title" :ratio="item.ratio"></collegetemp>
-                    </li>
-                </ul>
+            <transition-group name="collegeanimate" tag="div" mode="out-in">
+                <div class="box" v-for="n in group" :data-index=n v-show="n===flag" :key="n">
+                    <ul>
+                        <li v-for="(item,index) in items" v-if="index>=((n-1)*6)&&index<(n*6)" :key="index">
+                            <collegetemp :num="item.num" :title="item.title" :ratio="item.ratio"></collegetemp>
+                        </li>
+                    </ul>
+                </div>
+            </transition-group>
             </div> 
         </div>
-    </transition>
+    
 </template>
 <script>
     import Collegetemp from '../collegetemp/collegetemp.vue'
@@ -18,6 +21,8 @@
     export default {
         data(){
             return{
+                group:0,
+                flag:1,
                 items:[{
                     title:"外国语学院",
                     num:22,
@@ -42,11 +47,65 @@
                     title:"金融学院",
                     num:22,
                     ratio:'96%'
+                },{
+                    title:"金融学院",
+                    num:22,
+                    ratio:'96%'
+                },{
+                    title:"金融学院",
+                    num:22,
+                    ratio:'96%'
+                },{
+                    title:"金融学院",
+                    num:22,
+                    ratio:'96%'
+                },{
+                    title:"金融学院",
+                    num:22,
+                    ratio:'96%'
+                },{
+                    title:"金融学院",
+                    num:22,
+                    ratio:'96%'
+                },{
+                    title:"信息科技学院",
+                    num:22,
+                    ratio:'96%'
+                },{
+                    title:"信息科技学院",
+                    num:22,
+                    ratio:'96%'
+                },{
+                    title:"信息科技学院",
+                    num:22,
+                    ratio:'96%'
+                },{
+                    title:"信息科技学院",
+                    num:22,
+                    ratio:'96%'
+                },{
+                    title:"信息科技学院",
+                    num:22,
+                    ratio:'96%'
+                },{
+                    title:"信息科技学院",
+                    num:22,
+                    ratio:'96%'
+                },{
+                    title:"信息科技学院",
+                    num:22,
+                    ratio:'96%'
+                },{
+                    title:"信息科技学院",
+                    num:22,
+                    ratio:'96%'
                 }]
             }
         },
         created(){
             this._getCollegeData()
+            this.split()
+            this.setSlide()
         },
         methods:{
             //TODO
@@ -58,30 +117,49 @@
                                   }).catch(function (error) {
                                     console.log(error);
                                   })
+            },
+            split(){
+                let len = Number(this.items.length)
+                this.group = Math.ceil( len / 6)
+            },
+            setSlide(){
+                setTimeout(()=>{
+                    this.flag = (this.flag +1) 
+                    if(this.flag > this.group){
+                        this.flag=1
+                    } 
+                    this.setSlide()
+                },5000)
             }
         },
+
         components:{
             Collegetemp
         }
     }
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
     .collegeanimate-enter-active
-        transition:all 1s ease
+        transition:all 2s 
     .collegeanimate-leave-active
-        transition:all 0.5s ease
+        transition:all 2s 
     .collegeanimate-enter, .collegeanimate-leave-to
-        transform:translate3d(0,100px,0)
+        transform:translateY(100px)
         opacity:0
+    .box
+        overflow: hidden
+        position: absolute
+        top:50%
+        left:50%
+        width: 1000px
+        margin-top:-250px
+        margin-left:-500px
     .college
         position:absolute
         width:100% 
         height:100% 
         top:0 
         left:0 
-        display:flex 
-        align-items:center 
-        justify-content:center
         .wrapper
             width:1000px
             ul

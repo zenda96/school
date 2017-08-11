@@ -48,7 +48,7 @@
                 checkedInNum:0,
                 checkedInBoy:0,
                 checkedInGirl:0,
-                checkedInRatio:0.3,
+                checkedInRatio:0.381,
             }
         },
         computed:{
@@ -63,9 +63,9 @@
             this._getTotalData()
         },
         mounted(){
-            // setTimeout(this.pushCollege,10000)
-            // setTimeout(this.pushMap,20000)
-            // setTimeout(this.pushTotal,30000)
+            setTimeout(this.pushCollege,20000)
+            setTimeout(this.pushMap,40000)
+            setTimeout(this.pushTotal,60000)
         },
         methods:{
                 //TODO
@@ -190,7 +190,7 @@
                     transform:transcaleY(-50%)
                     .progress-background
                         transform: scale(0.9)
-                        stroke: rgba(0,0,0,0.1)
+                        stroke: rgba(0,0,0,0.2)
                     .progress-bar
                         transform: scale(0.9) rotate(-90deg)
                         stroke: #00cc66
@@ -201,7 +201,7 @@
                         position:absolute
                         top:50%
                         left:50%
-                        font-size:60px
+                        font-size:50px
                         color:#00cc66
                         transform:translate(-50%,-50%)
         .intro

@@ -26,11 +26,11 @@
                 items:[{
                     title:"外国语学院",
                     num:22,
-                    ratio:'96%'
+                    ratio:'96.6%'
                 },{
                     title:"信息科技学院",
                     num:22,
-                    ratio:'96%'
+                    ratio:'96.3%'
                 },{
                     title:"食品学院",
                     num:22,
@@ -42,7 +42,15 @@
                 },{
                     title:"园艺学院",
                     num:22,
-                    ratio:'96%'
+                    ratio:'95.6%'
+                },{
+                    title:"金融学院",
+                    num:22,
+                    ratio:'98.6%'
+                },{
+                    title:"金融学院",
+                    num:22,
+                    ratio:'91.6%'
                 },{
                     title:"金融学院",
                     num:22,
@@ -50,15 +58,7 @@
                 },{
                     title:"金融学院",
                     num:22,
-                    ratio:'96%'
-                },{
-                    title:"金融学院",
-                    num:22,
-                    ratio:'96%'
-                },{
-                    title:"金融学院",
-                    num:22,
-                    ratio:'96%'
+                    ratio:'90.6%'
                 },{
                     title:"金融学院",
                     num:22,

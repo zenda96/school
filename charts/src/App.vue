@@ -36,7 +36,7 @@ export default {
   },
   mounted(){
         this._getTime()
-        setTimeout(this._getTime,60000)
+        setInterval(this._getTime,60000)
   },
   methods:{
     pushCollege(){
@@ -66,7 +66,6 @@ export default {
         this.time.date = `${year}-${month}-${date}`
         this.time.day = day
         this.time.minute = `${hour}:${minute}`
-        console.log(T)
     },
     formatTime(string,len=2){
         var strlen = String(string).length
@@ -104,13 +103,12 @@ export default {
                 min-width:260px
                 height:100%
                 .minute
-                    width:50%
+                    width:45%
                     height:100%
                     float:right
                     color:#00cc66
                     font-size:40px
                     font-family:'微软雅黑'
-                    justify-content:flex-end
                     display:flex
                     align-items:center
                 .timeDetail

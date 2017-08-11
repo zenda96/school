@@ -141,11 +141,12 @@ export default {
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
     .scale-in-enter-active,.scale-in-leave-active
-        transition:all 0.5s ease
+        transition:all 1s ease
         #mask
-            transition:all 1s ease
+            transition:all 1s linear
     .scale-in-enter
         opacity:0
+        transform:scale(0)
         #mask
             transform:scale(0)
     .scale-in-leave-to

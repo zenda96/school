@@ -111,8 +111,10 @@
             //TODO
             _getCollegeData(){
                  API.getCollegeData().then((res)=>{
-                                     if(res.status===200){
-                                            console.log(res)
+                                     if(res.code==0){
+                                                this.items=res.items
+                                        }else{
+                                                console.error('未获取到数据')
                                         }
                                   }).catch(function (error) {
                                     console.log(error);

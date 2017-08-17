@@ -2,7 +2,7 @@
   <div id="app">
     <div class="header"> 
       <div class="left">
-          <embed src="../static/logo.svg" width="300" height="100" 
+          <embed src="./static/logo.svg" width="300" height="100" 
             type="image/svg+xml"
             pluginspage="http://www.adobe.com/svg/viewer/install/" />
       </div>
@@ -87,7 +87,7 @@ export default {
         top:0
         left:0
         font-family:'微软雅黑'
-        background:url('assets/bg.png')
+        background:url('../static/bg.png')
         color:#fff
         overflow:hidden
         .header

@@ -71,9 +71,14 @@
                 //TODO
                 _getTotalData(){
                     API.getTotalData().then((res)=>{
-                                     if(res.status===200){
-                                            console.log(res)
-                                      }
+                                            if(res.code==0){
+                                                this.checkedInNum=res.checkedInNum
+                                                this.checkedInBoy=res.checkedInBoy
+                                                this.checkedInGirl=res.checkedInGirl
+                                                this.checkedInRatio=res.checkedInRatio
+                                            }else{
+                                                console.error('未获取到数据')
+                                            }
                                   }).catch(function (error) {
                                     console.log(error);
                                   })

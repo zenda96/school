@@ -4,9 +4,76 @@
     <meta charset="utf-8">
     <link rel="shortcut icon" href="" />
     <title>charts</title>
+	<script>
+
+  	window.yxdpzs_cupl={}
+  	window.yxdpzs_cupl.getTotalDataURL = " ";   //第一屏接口
+  	//返回格式: 
+		//  code:0,
+		//  checkedInNum:0,   //报到总人数
+		//  checkedInBoy:0,	  //报到男生人数
+		//  checkedInGirl:0,  //报到女生人数
+		//  checkedInRatio:0.300, //报到总比例 保留3位小数
+	window.yxdpzs_cupl.getTotalData = function(data){
+
+	  	}
+  	window.yxdpzs_cupl.getCollegeDataURL = " "; //第二屏接口
+  	//返回格式： 	//code:0,
+				//items：[{
+                //     title:"外国语学院",
+                //     num:22,
+                //     ratio:'96%'
+                // },{
+                //     title:"信息科技学院",
+                //     num:22,
+                //     ratio:'96%'
+                // },{
+                //     title:"食品学院",
+                //     num:22,
+                //     ratio:'96%'
+                // },{
+                //     title:"人文学院",
+                //     num:22,
+                //     ratio:'96%'
+                // },{
+                //     title:"园艺学院",
+                //     num:22,
+                //     ratio:'96%'
+                // },{
+                //     title:"金融学院",
+                //     num:22,
+                //     ratio:'96%'
+                // }]
+//返回所有学院    
+	window.yxdpzs_cupl.getCollegeData = function(data){
+
+	  	}
+  	window.yxdpzs_cupl.getMapDataURL = " ";     //第三屏接口
+  	//map返回格式有疑问请@郑丹
+	//返回格式：  code:0,
+		       // locations:[{
+           //          name: '上海',          //  该省的名字，不要加‘省’
+           //          value:56,            //  该省报到人数
+           //          shouldNum:100    // 该省份应报道人数
+           //      }, {
+           //          name: '北京',
+           //          value:62,
+           //          shouldNum:100    
+           //      }, {
+           //          name: '广东',
+           //          value:85,
+           //          shouldNum:100    // 该省份应报道人数
+           //      }]
+           //      返回前五个省即可 	
+	window.yxdpzs_cupl.getMapData = function(data){
+
+	  	}
+  </script>
   </head>
+
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
+
 </html>
